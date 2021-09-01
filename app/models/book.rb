@@ -3,8 +3,9 @@ class Book < ApplicationRecord
 	validates :title, presence: true
 	validates :body ,presence: true, length: {maximum: 200}
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  #dependent: :destroyないとコメント・いいねある時に本を消去できない
 
   def favorited_by?(user)
     Favorite.where(user_id: user.id, book_id: self.id).exists?

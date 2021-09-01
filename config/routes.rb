@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'followings'
     end
     resource :relationships, only: [:create, :destroy]
+    #resourceにしとけばid情報載せないURLができる
   end
   
   resources :books do
